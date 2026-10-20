@@ -9,10 +9,23 @@ A simple web application built with Python and Flask as part of the CCT College 
 
 ## How to Run
 
-1. Create and activate a Python virtual environment.
-2. Install dependencies using `python3 -m pip install -r requirements.txt`.
-3. Run the application using `python3 app.py`.
-4. Open http://127.0.0.1:5000 in your browser.
+1. Create a virtual environment:
+
+   `python3 -m venv .venv`
+
+2. Activate it:
+
+   `source .venv/bin/activate`
+
+3. Install the dependencies:
+
+   `python3 -m pip install -r requirements.txt`
+
+4. Start the application:
+
+   `python3 app.py`
+
+5. Open http://127.0.0.1:5000 in your browser.
 
 ## What Would I Build?
 
