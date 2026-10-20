@@ -16,12 +16,10 @@ A simple web application built with Python and Flask as part of the CCT College 
 
 ## What Would I Build?
 
-### Artist Portfolio Builder
+I would build a visually impressive portfolio website builder for musicians, producers and sound designers. Many creatives need a professional online presence, but making a polished website that reflects their style can be difficult.
 
-I would build a visually impressive portfolio website builder designed for musicians, music producers and sound designers. Many creatives need a professional online presence to showcase their work, but creating a website that looks polished and reflects their style can be difficult and time-consuming.
+Users could showcase music, music videos, sound design projects, artwork, credits and contact details in one place. The design would be the main focus, with modern layouts, customisable colours, striking typography, project galleries and embedded audio and video players.
 
-The application would allow users to create a portfolio featuring their music, music videos, sound design projects, artwork, credits and contact information. The main focus would be on visual design, with modern layouts, customisable colours, striking typography, project galleries and embedded audio and video players.
+I would make the platform easy to use while helping each portfolio feel personal and professional. The first version would focus on creating an attractive portfolio for one artist, allowing me to test the design before expanding its features.
 
-I would aim to make the platform easy to use while giving users enough flexibility to create a portfolio that feels personal and professional. My initial version would focus on building an attractive portfolio experience, with the possibility of adding user accounts and customisable public pages in the future.
-
-The goal would be to help independent creatives, including myself, present their work professionally and make a strong impression on potential collaborators, clients and audiences.
+Later, I could add user accounts and customisable public pages so other creatives could build portfolios. The goal is to help independent artists present their work professionally and make a strong impression on potential collaborators, clients and audiences.
