@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        :root { --primary: #4f46e5; --danger: #ef4444; --bg: #f8fafc; --card-bg: #ffffff; --text: #0f172a; --border: #e2e8f0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); padding: 40px 16px; margin: 0; }
+        .card { max-width: 480px; margin: 0 auto; background: var(--card-bg); padding: 32px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        h2 { margin-top: 0; font-size: 1.5rem; }
+        .field { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 6px; }
+        input, textarea { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.95rem; }
+        input.invalid, textarea.invalid { border-color: var(--danger); background-color: #fef2f2; }
+        .err-msg { color: var(--danger); font-size: 0.8rem; margin-top: 4px; display: block; }
+        button { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 1rem; }
+        button:hover { opacity: 0.95; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Get in Touch</h2>
+        <form method="POST" action="{{ url_for('contact') }}" novalidate>
+            <div class="field">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" value="{{ name or '' }}" class="{{ 'invalid' if errors.name else '' }}">
+                {% if errors.name %}<span class="err-msg">{{ errors.name }}</span>{% endif %}
+            </div>
+
+            <div class="field">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" value="{{ email or '' }}" class="{{ 'invalid' if errors.email else '' }}">
+                {% if errors.email %}<span class="err-msg">{{ errors.email }}</span>{% endif %}
+            </div>
+
+            <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" class="{{ 'invalid' if errors.message else '' }}">{{ message or '' }}</textarea>
+                {% if errors.message %}<span class="err-msg">{{ errors.message }}</span>{% endif %}
+            </div>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>
