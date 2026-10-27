@@ -47,9 +47,9 @@ we dont need to store any data at the moment
 | Security | | | |
  
 ## What each got wrong
-Chat GPT - Nothing went wrong it ran perfectly apart from that I needed to add /contact to the end of the link everytime in order to open the web page but I think this is normal.
-Gemini -Same. thing with the /contact. Also it forgot to create the "contact_success.html" and "contact.html" folders in the templates folder so the code didn't run correctly first time and we had to troubleshoot this.
-Claude - Process was more convoluted. It made install a python extension when the other tools didn't. It gave me an app.py package to download but the steps it gave to run it weren't as simple as other tools. Contact form was very basic.
+Chat GPT - Nothing went wrong it ran perfectly apart from that I needed to add /contact to the end of the link everytime in order to open the web page but I think this is normal. Correctness: It ran without needing changes to the generated code. It rejcted bad inputs into the fields. Completeness: It did everything I asked.
+Gemini -Same. thing with the /contact. Also it forgot to create the "contact_success.html" and "contact.html" folders in the templates folder so the code didn't run correctly first time and we had to troubleshoot this. Correctness: It ran without needing changes to the generated code. It rejcted bad inputs into the fields. Completeness: It did everything I asked.
+Claude - Process was more convoluted. It made install a python extension when the other tools didn't. It gave me an app.py package to download but the steps it gave to run it weren't as simple as other tools. Contact form was very basic. Correctness: The code ran successfully once I followed the setup instructions, and it rejected invalid inputs. Completeness: It included the requested contact form functionality, including validation and a confirmation page.
  
 ## Which I kept, and why
 I could have picked either Chat GPT or Gemini but I'm going to pick to Gemini. It gave me an easy to understand step by step guide on how to run the contact form and the resulting contact form looked nice and comeplete. It also displayed a nice preview of the contact form in the chat before I ran it on my own computer. The form worked perfectly and didn't break when I enetered incorrectly formatted email or left the fields blank. It just displayed the warning message as expected. Chat GPT was the same and didn't give me any trouble but I'm sticking with Gemini. I couldn't break any of the contact forms by inputting incorrect information.
