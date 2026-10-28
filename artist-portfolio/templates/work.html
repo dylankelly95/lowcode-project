@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Work Items{% endblock %}
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2>Work Items</h2>
+    <a href="{{ url_for('new_work_form') }}" class="btn">+ New Work Item</a>
+</div>
+{% if work_items %}
+    <div class="grid">
+        {% for work in work_items %}
+            <div class="card">
+                <h3><a href="{{ url_for('work_detail', work_id=work.id) }}">{{ work.title }}</a></h3>
+                <p>{{ work.description }}</p>
+                <p><span class="badge">{{ work.media_type }}</span> {% if work.is_featured %}<span class="badge" style="background:#fff8c5; color:#9a6700;">Featured</span>{% endif %}</p>
+                {% if work.project_title %}
+                    <small>Project: {{ work.project_title }}</small>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No work items found. Add your first work item above.</p>
+{% endif %}
+{% endblock %}

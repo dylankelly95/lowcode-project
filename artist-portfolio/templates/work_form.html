@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}New Work Item{% endblock %}
+{% block content %}
+<h2>Create New Work Item</h2>
+<form action="{{ url_for('create_work') }}" method="POST">
+    <div>
+        <label for="title">Title *</label>
+        <input type="text" id="title" name="title" maxlength="200" required>
+    </div>
+    <div>
+        <label for="project_id">Project (Optional)</label>
+        <select id="project_id" name="project_id">
+            <option value="">-- None (Standalone Work Item) --</option>
+            {% for project in projects %}
+                <option value="{{ project.id }}">{{ project.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="media_type">Media Type</label>
+        <select id="media_type" name="media_type">
+            <option value="image">Image</option>
+            <option value="video">Video</option>
+            <option value="audio">Audio</option>
+            <option value="link">Link</option>
+        </select>
+    </div>
+    <div>
+        <label for="media_url">Media URL</label>
+        <input type="text" id="media_url" name="media_url" placeholder="https://example.com/image.jpg">
+    </div>
+    <div>
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+    </div>
+    <div>
+        <label>
+            <input type="checkbox" name="is_featured" value="1">
+            Feature on homepage
+        </label>
+    </div>
+    <button type="submit" class="btn">Create Work Item</button>
+    <a href="{{ url_for('list_work') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

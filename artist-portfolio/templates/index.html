@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}{{ portfolio.artist_name if portfolio else 'Artist Portfolio' }}{% endblock %}
+{% block content %}
+<section class="hero">
+    <h2>{{ portfolio.artist_name }}</h2>
+    <p><strong>{{ portfolio.headline }}</strong></p>
+    <p>{{ portfolio.biography }}</p>
+</section>
+<hr>
+<section>
+    <h3>Featured Work</h3>
+    {% if featured_work %}
+        <div class="grid">
+            {% for work in featured_work %}
+                <div class="card">
+                    <h4><a href="{{ url_for('work_detail', work_id=work.id) }}">{{ work.title }}</a></h4>
+                    <p>{{ work.description[:100] if work.description else '' }}...</p>
+                    <span class="badge">{{ work.media_type }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No featured work items yet.</p>
+    {% endif %}
+</section>
+<hr>
+<section>
+    <h3>Recent Projects</h3>
+    {% if projects %}
+        <div class="grid">
+            {% for project in projects %}
+                <div class="card">
+                    <h4><a href="{{ url_for('project_detail', project_id=project.id) }}">{{ project.title }}</a></h4>
+                    <p>{{ project.description[:100] if project.description else '' }}...</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No projects created yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

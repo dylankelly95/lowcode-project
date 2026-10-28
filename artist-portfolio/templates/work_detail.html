@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}{{ work_item.title }}{% endblock %}
+{% block content %}
+<h2>{{ work_item.title }}</h2>
+<p><span class="badge">{{ work_item.media_type }}</span></p>
+{% if work_item.media_url %}
+    <p><strong>Media URL:</strong> <a href="{{ work_item.media_url }}" target="_blank" rel="noopener">{{ work_item.media_url }}</a></p>
+{% endif %}
+<p>{{ work_item.description }}</p>
+{% if work_item.project_title %}
+    <p><strong>Belongs to project:</strong> {{ work_item.project_title }}</p>
+{% endif %}
+<form action="{{ url_for('toggle_feature', work_id=work_item.id) }}" method="POST" style="margin-top: 1.5rem;">
+    {% if work_item.is_featured %}
+        <button type="submit" class="btn btn-secondary">Unfeature Work Item</button>
+    {% else %}
+        <button type="submit" class="btn">Feature on Homepage</button>
+    {% endif %}
+</form>
+<br>
+<a href="{{ url_for('list_work') }}" class="btn btn-secondary">← Back to Work Items</a>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}New Project{% endblock %}
+{% block content %}
+<h2>Create New Project</h2>
+<form action="{{ url_for('create_project') }}" method="POST">
+    <div>
+        <label for="title">Project Title *</label>
+        <input type="text" id="title" name="title" value="{{ title or '' }}" maxlength="200" required>
+    </div>
+    <div>
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="5">{{ description or '' }}</textarea>
+    </div>
+    <button type="submit" class="btn">Create Project</button>
+    <a href="{{ url_for('list_projects') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
