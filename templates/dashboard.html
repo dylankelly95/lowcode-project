@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Dashboard — {{ user.username }}</h2>
+<a href="{{ url_for('upload') }}" class="btn">+ Upload New Artwork</a>
+<a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+<hr>
+<h3>Your Uploads</h3>
+<div class="grid">
+    {% for work in works %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='uploads/' + work.image_filename) }}" style="max-width:100%;">
+            <h4>{{ work.title }}</h4>
+        </div>
+    {% else %}
+        <p>You haven't uploaded any artwork yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

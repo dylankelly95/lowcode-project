@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Public Gallery</h2>
+{% if current_user.is_authenticated %}
+    <p>Welcome back, <strong>{{ current_user.username }}</strong>! <a href="{{ url_for('dashboard') }}">Go to Dashboard</a></p>
+{% else %}
+    <p><a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('register') }}">Register</a> to upload artwork.</p>
+{% endif %}
+<hr>
+<div class="grid">
+    {% for work in works %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='uploads/' + work.image_filename) }}" style="max-width:100%; border-radius:4px;">
+            <h3>{{ work.title }}</h3>
+            <p>{{ work.description }}</p>
+            <small>By: {{ work.author.username }}</small>
+        </div>
+    {% else %}
+        <p>No uploaded artwork yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

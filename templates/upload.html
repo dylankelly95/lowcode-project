@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Upload Artwork File</h2>
+<form method="POST" enctype="multipart/form-data">
+    <div><label>Title</label><input type="text" name="title" required></div>
+    <div><label>Description</label><textarea name="description"></textarea></div>
+    <div><label>Select Image File (JPG, PNG, WEBP)</label><input type="file" name="file" accept="image/*" required></div>
+    <br><button type="submit" class="btn">Upload to Gallery</button>
+</form>
+{% endblock %}
