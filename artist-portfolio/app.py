@@ -55,6 +55,10 @@ def create_project():
     title = request.form.get('title', '').strip()
     description = request.form.get('description', '').strip()
     
+    if len(description) > 500:
+        flash('Description must be 500 characters or fewer.')
+        return redirect(request.url)
+
     if not title:
         flash('Project title is required.')
         return render_template('project_form.html', title=title, description=description), 400
