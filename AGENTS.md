@@ -14,8 +14,9 @@ This file tells any AI coding agent (Cursor, GitHub Copilot, Gemini CLI, Claude 
 
 | Decision | What I chose | Why |
 |---|---|---|
-| Deleting a [PARENT] that still has [CHILDREN] | [RESTRICT / CASCADE / SET NULL] | [YOUR REASON IN PLAIN ENGLISH] |
-| [ANOTHER DECISION] | [WHAT YOU CHOSE] | [WHY] |
+| **User → Portfolio Delete Rule** | `CASCADE` | **The User:** Blocking account deletion until sub-records are cleared causes friction during account closure and raises privacy/GDPR compliance concerns. |
+| **Portfolio → Project Delete Rule** | `RESTRICT` | **The Artist:** Automatic cascade deletion could wipe a creator's entire body of work in a single accidental click. |
+| **Project → Media Delete Rule** | `CASCADE` | **The Content Creator:** Requiring manual deletion of every individual audio/image file before removing a project creates unnecessary friction and leaves orphan media files behind. |
 
 ## Technology
 
