@@ -16,20 +16,35 @@ Copy the block below for each entry.
 
 ### Entry [N]: [short title]
 
-- **Date:** [YYYY-MM-DD]
-- **Tool:** [tool and model, if shown]
-- **Task (why I used AI here):** [what you delegated, and why you chose AI for it]
+- **Date:** [2026-11-11]
+- **Tool:** [Gemini, 3.6 Flash]
+- **Task (why I used AI here):** [For the lab in week 5 we were tasked to give our app a memory using AI. Rather than letting the AI invent the database structure or guess business rules, I constrained it to act strictly as a translator—implementing my exact tables, constraints and chosen delete rules and required it to explain each constraint in plain English and flag any unspecified design choices so I could audit the SQL line by line.]
 - **Prompt (verbatim):**
 
   ```text
-  [paste the exact prompt]
+  Read docs/data-model.md and AGENTS.md.
+
+Create ONE file, schema/001_initial.sql, that builds exactly the tables, fields and rules in
+docs/data-model.md, using SQLite syntax.
+- Do not change any other file.
+- Do not add tables or fields I did not list.
+- Use the delete rule I wrote in docs/data-model.md. If it is missing, STOP and ask me.
+- Store dates as TEXT in YYYY-MM-DD form.
+- Put a short comment on each line that has a rule (NOT NULL, UNIQUE, CHECK, REFERENCES).
+
+After the file, explain each constraint in one line of plain English.
+Then list any decision you made that I did not specify.
   ```
 
-- **What it produced:** [files changed or created, in one or two lines]
-- **Decision:** Accepted / Modified / Rejected
-- **Why:** [what made you accept, change or throw it away]
-- **What I checked:** [how you verified it: read it field by field, ran tools/check_db.py, ran the tests, restarted the app ...]
-- **Decisions the AI made that I did not specify:** [paste the answer to prompt 05, or "none"]
+- **What it produced:** Created `schema/001_initial.sql` containing the SQLite DDL for all six tables (`users`, `roles`, `user_roles`, `portfolios`, `projects`, `media`) with all specified constraints and delete rules, along with plain-English constraint explanations and a list of unspecified decisions
+- **Decision:** Accepted
+- **Why:** The generated SQL accurately translated every table, field, data type (`INTEGER` and `TEXT`), constraint (`NOT NULL`, `UNIQUE`, `CHECK`, `REFERENCES`), and chosen `ON DELETE` rule (`CASCADE` and `RESTRICT`) from `docs/data-model.md` without adding extra tables or altering my design.
+- **What I checked:** Read `schema/001_initial.sql` field by field against `docs/data-model.md` using the Step 5 checklist (verifying SQLite syntax, primary keys, foreign keys, `CHECK` constraints, `TEXT` dates, and delete rules) and reviewed the AI's unspecified design choices (such as the composite primary key on `user_roles`).
+- **Decisions the AI made that I did not specify:
+-Composite Primary Key on user_roles: Your data model listed user_id and role_id as required foreign keys on user_roles without specifying a primary key. I defined PRIMARY KEY (user_id, role_id) so SQLite prevents duplicate (user_id, role_id) pairs and gives the junction table a valid primary key.   
+-NOT NULL on user_roles Foreign Keys: Explicitly added NOT NULL alongside REFERENCES on user_roles.user_id and user_roles.role_id to match the "Required: yes" column in your data model.   
+-Omitted PRAGMA foreign_keys = ON inside the migration file: Per AGENTS.md Rule 3, foreign-key enforcement is a per-connection runtime setting rather than a schema DDL statement, so it is left out of schema/001_initial.sql.   
+-No CHECK format constraint on projects.release_date: Your data model specified release_date as optional TEXT (YYYY-MM-DD) without a formal CHECK expression, so no regex/date format CHECK constraint was added.
 - **Commit:** [the commit message or hash where this landed]
 
 ---
