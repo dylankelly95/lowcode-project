@@ -1,4 +1,4 @@
-# AI-usage log: [YOUR APP NAME]
+# AI-usage log: [Artfolio]
 
 This log is a graded part of CA2. It feeds the AI Fluency declaration (Delegation, Description, Discernment, Diligence). Add an entry every time AI does something meaningful for your project, including the times it got things wrong. Paste prompts **exactly** as you typed them.
 
@@ -14,7 +14,7 @@ Copy the block below for each entry.
 
 ---
 
-### Entry [N]: [short title]
+### Entry [1]: [Generate the initial schema]
 
 - **Date:** [2026-11-11]
 - **Tool:** [Gemini, 3.6 Flash]
@@ -45,7 +45,10 @@ Then list any decision you made that I did not specify.
 -NOT NULL on user_roles Foreign Keys: Explicitly added NOT NULL alongside REFERENCES on user_roles.user_id and user_roles.role_id to match the "Required: yes" column in your data model.   
 -Omitted PRAGMA foreign_keys = ON inside the migration file: Per AGENTS.md Rule 3, foreign-key enforcement is a per-connection runtime setting rather than a schema DDL statement, so it is left out of schema/001_initial.sql.   
 -No CHECK format constraint on projects.release_date: Your data model specified release_date as optional TEXT (YYYY-MM-DD) without a formal CHECK expression, so no regex/date format CHECK constraint was added.
-- **Commit:** [the commit message or hash where this landed]
+- **Commit:** 
+Migrating app.db using files in schema/
+  ✓ 001_initial.sql applied
+✓ Done. 1 new migration(s) applied.
 
 ---
 

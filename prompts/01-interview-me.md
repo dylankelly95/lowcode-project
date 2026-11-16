@@ -15,8 +15,7 @@ You are helping me design the data model for my app. I am not a professional dev
 Read AGENTS.md first.
 
 My app: [ONE OR TWO SENTENCES: WHAT IT DOES AND WHO USES IT]
-My paper sketch has these things in it: [LIST THE BOXES ON YOUR SKETCH, e.g. member, equipment, loan]
-
+My paper sketch has these things in it: USERS, PORTFOLIOS, PROJECTS, MEDIA.
 Interview me about my data. Rules:
 - Ask ONE question at a time and wait for my answer.
 - Use plain English, no jargon. If you must use a database word, explain it in brackets.

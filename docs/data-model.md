@@ -181,3 +181,12 @@ Fill this in as you go. It is great material for the "design decisions" section 
 | Date | What I changed | Why (what testing showed me) |
 |---|---|---|
 | [DATE] | [CHANGE] | [REASON] |
+
+
+### Constraint testing predictions (Step 7)
+
+| Test | What I tried | I predict | What happened | Surprised? Why? |
+|---|---|---|---|---|
+| A: Duplicate | `INSERT INTO users (email, full_name, username) VALUES ('other@example.com', 'Alex Byrne', 'dylankelly')` | reject | Blocked by the `UNIQUE` rule (`UNIQUE constraint failed: users.username`). | No — `username` has to be unique, so SQLite stopped the duplicate. |
+| B: Breaks a CHECK | `INSERT INTO media (project_id, file_name, file_type, file_url) VALUES (1, 'track.pdf', 'document', 'https://example.com/track.pdf')` | reject | Blocked by the `CHECK` rule (`file_type IN ('image', 'audio', 'video')`). | No — `'document'` isn't one of the allowed file types. |
+| C: Points at id 999 | `INSERT INTO media (project_id, file_name, file_type, file_url) VALUES (999, 'cover.png', 'image', 'https://example.com/cover.png')` | reject | Worked (`OK (1 rows)`) on a normal connection, and only got blocked (`FOREIGN KEY constraint failed`) when I added `--fk`. | Yes — I didn't expect SQLite to allow a fake `project_id`, since foreign-key checks are turned off by default unless you enable them. |
