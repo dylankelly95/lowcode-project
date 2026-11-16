@@ -180,7 +180,9 @@ Fill this in as you go. It is great material for the "design decisions" section 
 
 | Date | What I changed | Why (what testing showed me) |
 |---|---|---|
-| [DATE] | [CHANGE] | [REASON] |
+| 2026-11-16 | Enforced `PRAGMA foreign_keys = ON` inside `db.get_connection()` in `db.py` (and deleted the test orphan row from `app.db`). | Step 7 testing (`INSERT INTO media` with `project_id = 999`) proved that SQLite disables foreign-key checks by default on new connections and allows orphan rows unless `PRAGMA foreign_keys = ON` is run on every connection. |
+| 2026-11-16 | Added `AS id` SQL aliases (`project_id AS id`, `media_id AS id`) and a `"General"` fallback for `category_medium` in `db.py` / `app.py`. | Wiring `db.py` to the Week 3 Flask templates revealed that existing Jinja templates expected `.id` attributes and that `templates/project_form.html` did not yet submit a `category_medium` field, which would have triggered a `NOT NULL` error. |
+| 2026-11-16 | Added automated constraint tests in `tests/test_constraints.py` verifying `UNIQUE`, `CHECK`, `NOT NULL`, `FOREIGN KEY`, `RESTRICT`, and `CASCADE`. | Running `python3 -m unittest -v` confirmed that every schema rule rejects invalid data when `db.get_connection()` is used and that records persist across closing and reopening the SQLite file. |
 
 
 ### Constraint testing predictions (Step 7)
