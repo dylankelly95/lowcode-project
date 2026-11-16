@@ -19,15 +19,14 @@ Write one test for EACH of these, each one trying to put BAD data in and checkin
 - a duplicate value in a UNIQUE field
 - a value that breaks a CHECK rule
 - a missing value in a required (NOT NULL) field
-- a row pointing at a [PARENT] that does not exist (foreign key), using db.get_connection()
-- my delete rule: [RESTRICT: deleting a parent with children is blocked / CASCADE: the
-  children are deleted too / SET NULL: the children's link is emptied]
+- a row pointing at a project (or portfolio / user) that does not exist (foreign key), using db.get_connection()
+- my delete rule: RESTRICT on portfolios -> projects (deleting a portfolio with projects is blocked) and CASCADE on users -> portfolios and projects -> media (the children are deleted too)
 Also write:
 - one test that saves a record, closes the connection, opens the file again and finds it
 - one test that asking for an id that does not exist returns None (not an error)
 
 Do not change my app, db.py or the schema to make a test pass. If a test fails, tell me why.
-Tell me the exact command to run the tests on [Windows / Mac].
+Tell me the exact command to run the tests on Mac.
 Then list any decision you made that I did not specify.
 ```
 

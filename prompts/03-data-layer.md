@@ -10,15 +10,13 @@ This is the prompt most likely to go wrong, because the agent is now editing you
 
 ```text
 Read AGENTS.md, docs/data-model.md and schema/001_initial.sql. Then look at how my app
-currently stores its data: [NAME THE FILE, e.g. app.py, and how it stores data now, e.g.
-"a Python list called tasks" or "I don't know, please find it and tell me before changing it"].
+currently stores its data: app.py (I don't know how it stores data yet, please find it and tell me before changing it)
 
 Make my app store its data in the SQLite database instead:
 1. Create db.py with a get_connection() function that opens the database file (path from the
    environment variable DATABASE_PATH, default app.db), sets row_factory to sqlite3.Row,
    and runs PRAGMA foreign_keys = ON. Every database access in the app must use this function.
-2. In db.py, write simple functions to create, read, list, update and delete [MY MAIN
-   ENTITIES]. Use ? placeholders for every value, e.g.
+2. In db.py, write simple functions to create, read, list, update and delete users,roles,user_roles,portfolios,projects,media. Use ? placeholders for every value, e.g.
    conn.execute("SELECT * FROM loan WHERE id = ?", (loan_id,))
    Never build SQL with f-strings, .format(), % or +.
 3. When something is not found, the function returns None and the route returns a 404 page.
